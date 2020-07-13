@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useContext} from 'react';
+import {AppContext} from './store';
+import * as actions from './store/actions'
 
 function App() {
+  const {state, dispatch} = useContext(AppContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>Count: ${state.count}</div>
+      <button onClick={handleClick}>+1</button>
     </div>
   );
+
+  function handleClick() {
+    dispatch(actions.setCount(1))
+  }
 }
 
 export default App;
